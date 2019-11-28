@@ -1,0 +1,12 @@
+# Use this for h1 sized headlines
+## This for sub headings
+### ...you get the idea, if not, see the output below
+
+// Code example
+```
+while(true) {
+    break;
+}
+```
+**bold**
+__italics__

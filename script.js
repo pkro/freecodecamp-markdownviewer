@@ -1,17 +1,24 @@
 const main = () => {
-    editor = document.querySelector('#editor');
-    preview = document.querySelector('#preview');
-    preview.innerHTML = marked(editor.value);
+    const editor = document.querySelector('#editor');
+    const preview = document.querySelector('#preview');
+    readTextURL('welcome.txt', updatePreview);
+    
 }
 
-const readTextURL = url => {
+const updatePreview = (markdown) => {
+    editor.innerText = markdown
+    preview.innerHTML = marked(markdown);
+}
+
+const readTextURL = (url, callback) => {
     const request = new XMLHttpRequest();
     request.open('GET', url);
     request.send(null);
     request.onreadystatechange = () => {
         var type = request.getResponseHeader('Content-Type');
             if (type.indexOf("text") !== 1) {
-                return request.responseText;
+                markdown = request.responseText.replace("\n", '&#13;&#10;');
+                callback(markdown);
             }
     }
 }
